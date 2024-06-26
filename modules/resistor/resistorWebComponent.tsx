@@ -1,10 +1,11 @@
+//'use client';
 
 class Resistor extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
         <div>
             <h1>Resistor</h1>
-            <p>Resistor component</p>
+            <p>Resistor comp</p>
         </div>        `
     }
 }

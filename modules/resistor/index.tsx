@@ -1,8 +1,11 @@
+'use client';
+
 import React from "react";
+//import "./resistorWebComponent";
 
 export function Index() {
     React.useEffect(() => {
-        import("./resistorWebComponent");
+        import("./resistorWebComponent")
     });
 
     return (
