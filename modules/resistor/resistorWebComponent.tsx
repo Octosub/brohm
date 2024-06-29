@@ -8,7 +8,8 @@ class Resistor extends HTMLElement {
       return ["color"];
     }
 
-    attributeChangeCallback(name) {
+    attributeChangedCallback(name) {
+      console.log(`attribute changed: ${name}`)
       if (name === "color") {
         this.update();
       }
@@ -17,10 +18,15 @@ class Resistor extends HTMLElement {
     constructor() {
       super();
 
+      console.log("constructor called")
+
       const container = document.createElement("div");
+      container.id = "resistor-color-container";
       this.valSpan = document.createElement("span");
+      this.valSpan.id = "resistor-color-value";
 
       container.appendChild(this.valSpan);
+      this.container = container;
     }
 
     connectedCallback() {
@@ -29,6 +35,7 @@ class Resistor extends HTMLElement {
     }
 
     update() {
+      console.log(`update method triggered with color: ${this.getAttribute("color")}`)
       this.valSpan.style.backgroundColor = this.getAttribute("color") || "black";
     }
 }

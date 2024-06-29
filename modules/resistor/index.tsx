@@ -15,7 +15,9 @@ export function Index() {
 
       <>
         <div id="color-selector-container">
-          <select value={color} onChange={(e) => setColor(e.target.value)}>
+          <select value={color} onChange={(e) => {
+            setColor(e.target.value)
+            }}>
             <option value="black">Black</option>
             <option value="brown">Brown</option>
             <option value="red">Red</option>
