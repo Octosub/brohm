@@ -18,9 +18,12 @@ class Resistor extends HTMLElement {
       super();
 
       const container = document.createElement("div");
+      container.id = "resistor-color-container";
       this.valSpan = document.createElement("span");
+      this.valSpan.id = "resistor-color-value";
 
       container.appendChild(this.valSpan);
+      this.container = container;
     }
 
     connectedCallback() {
