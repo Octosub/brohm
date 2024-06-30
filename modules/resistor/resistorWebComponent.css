@@ -1,13 +1,13 @@
-#resistor-color-value {
-  width: 100%;
-  height: 50%;
-}
-
 #resistor-color-container {
   display: flex;
-  justify-content: center;
+  flex-direction: flex-start;
   align-items: center;
   height: 300px;
   width: 100%;
   border: solid black 5px;
+}
+
+[id^="resistor-color-value"] {
+  width: 20%;
+  height: 50%;
 }
