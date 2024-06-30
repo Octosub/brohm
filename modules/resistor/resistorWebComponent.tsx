@@ -5,7 +5,7 @@ import "./resistorWebComponent.css"
 class Resistor extends HTMLElement {
 
     static get observedAttributes() {
-      return ["color1", "color2"];
+      return ["color1", "color2", "color3", "color4"];
     }
 
     attributeChangedCallback(name) {
@@ -17,24 +17,28 @@ class Resistor extends HTMLElement {
         case "color2":
           this.update(2);
           break;
+        case "color3":
+          this.update(3);
+          break;
+        case "color4":
+          this.update(4);
+          break;
       }
     }
 
     constructor() {
       super();
-
       console.log("constructor called")
 
       const container = document.createElement("div");
       container.id = "resistor-color-container";
 
-      this.valSpan1 = document.createElement("span");
-      this.valSpan1.id = "resistor-color-value1";
-      this.valSpan2 = document.createElement("span");
-      this.valSpan2.id = "resistor-color-value2";
-
-      container.appendChild(this.valSpan1);
-      container.appendChild(this.valSpan2);
+      for(let i = 1; i <= 4; i++) {
+        const span = document.createElement("span");
+        span.id = `resistor-color-value${i}`;
+        container.appendChild(span);
+        this[`valSpan${i}`] = span;
+      }
 
       this.container = container;
     }
@@ -51,6 +55,12 @@ class Resistor extends HTMLElement {
           break;
         case 2:
           this.valSpan2.style.backgroundColor = this.getAttribute("color2") || "black";
+          break;
+        case 3:
+          this.valSpan3.style.backgroundColor = this.getAttribute("color3") || "black";
+          break;
+        case 4:
+          this.valSpan4.style.backgroundColor = this.getAttribute("color4") || "black";
           break;
         default:
           this.valSpan1.style.backgroundColor = this.getAttribute("color1") || "black";
