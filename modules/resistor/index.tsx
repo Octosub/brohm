@@ -5,7 +5,8 @@ import { WebComponentWrapper } from "./helpers/WebComponentWrapper";
 //import "./resistorWebComponent";
 
 export function Index() {
-    const [ color, setColor ] = useState("red");
+    const [ color1, setColor1 ] = useState("red");
+    const [ color2, setColor2 ] = useState("red");
 
     React.useEffect(() => {
         import("./resistorWebComponent")
@@ -15,17 +16,37 @@ export function Index() {
 
       <>
         <div id="color-selector-container">
-          <select value={color} onChange={(e) => {
-            setColor(e.target.value)
+          <select value={color1} onChange={(e) => {
+            setColor1(e.target.value)
             }}>
             <option value="black">Black</option>
             <option value="brown">Brown</option>
             <option value="red">Red</option>
+            <option value="orange">Orange</option>
+            <option value="yellow">Yellow</option>
+            <option value="green">Green</option>
+            <option value="blue">Blue</option>
+            <option value="purple">Purple</option>
+            <option value="silver">Silver</option>
+          </select>
+          <select value={color2} onChange={(e) => {
+            setColor2(e.target.value)
+            }}>
+            <option value="black">Black</option>
+            <option value="brown">Brown</option>
+            <option value="red">Red</option>
+            <option value="orange">Orange</option>
+            <option value="yellow">Yellow</option>
+            <option value="green">Green</option>
+            <option value="blue">Blue</option>
+            <option value="purple">Purple</option>
+            <option value="silver">Silver</option>
           </select>
         </div>
         <WebComponentWrapper
           wcTag={"resistor-component"}
-          color={color}
+          color1={color1}
+          color2={color2}
         />
       </>
     )

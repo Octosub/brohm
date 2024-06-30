@@ -5,13 +5,18 @@ import "./resistorWebComponent.css"
 class Resistor extends HTMLElement {
 
     static get observedAttributes() {
-      return ["color"];
+      return ["color1", "color2"];
     }
 
     attributeChangedCallback(name) {
       console.log(`attribute changed: ${name}`)
-      if (name === "color") {
-        this.update();
+      switch(name) {
+        case "color1":
+          this.update(1);
+          break;
+        case "color2":
+          this.update(2);
+          break;
       }
     }
 
@@ -22,10 +27,15 @@ class Resistor extends HTMLElement {
 
       const container = document.createElement("div");
       container.id = "resistor-color-container";
-      this.valSpan = document.createElement("span");
-      this.valSpan.id = "resistor-color-value";
 
-      container.appendChild(this.valSpan);
+      this.valSpan1 = document.createElement("span");
+      this.valSpan1.id = "resistor-color-value1";
+      this.valSpan2 = document.createElement("span");
+      this.valSpan2.id = "resistor-color-value2";
+
+      container.appendChild(this.valSpan1);
+      container.appendChild(this.valSpan2);
+
       this.container = container;
     }
 
@@ -34,9 +44,19 @@ class Resistor extends HTMLElement {
       this.update();
     }
 
-    update() {
-      console.log(`update method triggered with color: ${this.getAttribute("color")}`)
-      this.valSpan.style.backgroundColor = this.getAttribute("color") || "black";
+    update(bandnum?: number) {
+      switch(bandnum) {
+        case 1:
+          this.valSpan1.style.backgroundColor = this.getAttribute("color1") || "black";
+          break;
+        case 2:
+          this.valSpan2.style.backgroundColor = this.getAttribute("color2") || "black";
+          break;
+        default:
+          this.valSpan1.style.backgroundColor = this.getAttribute("color1") || "black";
+          this.valSpan2.style.backgroundColor = this.getAttribute("color2") || "black";
+          break;
+      }
     }
 }
 
