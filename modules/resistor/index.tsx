@@ -9,6 +9,8 @@ export function Index() {
     const [ color2, setColor2 ] = useState("red");
     const [ color3, setColor3 ] = useState("red");
     const [ color4, setColor4 ] = useState("red");
+    const [ color5, setColor5 ] = useState("red");
+    const [ isFiveBand, setIsFiveBand ] = useState(false);
 
     React.useEffect(() => {
         import("./resistorWebComponent")
@@ -70,6 +72,28 @@ export function Index() {
             <option value="purple">Purple</option>
             <option value="silver">Silver</option>
           </select>
+          {isFiveBand && (
+            <select value={color5} onChange={(e) => {
+              setColor5(e.target.value)
+              }}>
+              <option value="black">Black</option>
+              <option value="brown">Brown</option>
+              <option value="red">Red</option>
+              <option value="orange">Orange</option>
+              <option value="yellow">Yellow</option>
+              <option value="green">Green</option>
+              <option value="blue">Blue</option>
+              <option value="purple">Purple</option>
+              <option value="silver">Silver</option>
+            </select>
+          )}
+          <label>
+            <input
+              type="checkbox"
+              checked={isFiveBand}
+              onChange={() => setIsFiveBand(!isFiveBand)}
+            /> Five Band Resistor
+          </label>
         </div>
         <WebComponentWrapper
           wcTag={"resistor-component"}
@@ -77,6 +101,8 @@ export function Index() {
           color2={color2}
           color3={color3}
           color4={color4}
+          color5={isFiveBand ? color5 : undefined}
+          bandCount={isFiveBand ? true : false}
         />
       </>
     )

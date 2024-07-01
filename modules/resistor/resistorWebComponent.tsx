@@ -5,10 +5,10 @@ import "./resistorWebComponent.css"
 class Resistor extends HTMLElement {
 
     static get observedAttributes() {
-      return ["color1", "color2", "color3", "color4"];
+      return ["color1", "color2", "color3", "color4", "color5", "bandCount"];
     }
 
-    attributeChangedCallback(name) {
+    attributeChangedCallback(name: string) {
       console.log(`attribute changed: ${name}`)
       switch(name) {
         case "color1":
@@ -22,6 +22,12 @@ class Resistor extends HTMLElement {
           break;
         case "color4":
           this.update(4);
+          break;
+        case "color5":
+          this.update(5);
+          break;
+        case "bandCount":
+          this.updateBandCount();
           break;
       }
     }
@@ -40,12 +46,20 @@ class Resistor extends HTMLElement {
         this[`valSpan${i}`] = span;
       }
 
+      if (this.getAttribute("bandCount") === "true") {
+        const span = document.createElement("span");
+        span.id = "resistor-color-value5";
+        container.appendChild(span);
+        this.valSpan5 = span;
+      }
+
       this.container = container;
     }
 
     connectedCallback() {
       this.appendChild(this.container);
       this.update();
+      this.updateBandCount();
     }
 
     update(bandnum?: number) {
@@ -62,10 +76,34 @@ class Resistor extends HTMLElement {
         case 4:
           this.valSpan4.style.backgroundColor = this.getAttribute("color4") || "black";
           break;
+        case 5:
+          if (this.getAttribute("bandCount") === "true") {
+            this.valSpan5.style.backgroundColor = this.getAttribute("color5") || "black";
+            break;
+          }
         default:
           this.valSpan1.style.backgroundColor = this.getAttribute("color1") || "black";
           this.valSpan2.style.backgroundColor = this.getAttribute("color2") || "black";
+          this.valSpan3.style.backgroundColor = this.getAttribute("color3") || "black";
+          this.valSpan4.style.backgroundColor = this.getAttribute("color4") || "black";
+          if (this.getAttribute("bandCount") === "true") {
+            this.valSpan5.style.backgroundColor = this.getAttribute("color5") || "black";
+          }
           break;
+      }
+    }
+
+    updateBandCount() {
+      const isFiveBand = this.getAttribute("bandCount") === "true";
+      if (isFiveBand && !this.valSpan5) {
+        const span = document.createElement("span");
+        span.id = `resistor-color-value5`;
+        this.container.appendChild(span);
+        this.valSpan5 = span;
+        this.update(5);
+      } else if (!isFiveBand && this.valspan5) {
+        this.container.removeChild(this.valSpan5);
+        delete this.valSpan5;
       }
     }
 }
