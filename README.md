@@ -1,7 +1,7 @@
 # brOHM
 ## This is a webapp to help with calculating the ohm value on resistors
 
-The project is mainly made using Web Components because I wanted to experiment with them and for learning about the integration of Web Components into a React framework.
+The project is mainly made using Web Components because I wanted to experiment with them and to learn about their integration of Web Components into a React framework.
 
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
