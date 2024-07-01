@@ -1,6 +1,7 @@
 'use client';
 
 import "./resistorWebComponent.css"
+import { calculateResistance } from "./helpers/calculateResistance";
 
 class Resistor extends HTMLElement {
 
@@ -39,6 +40,11 @@ class Resistor extends HTMLElement {
         container.appendChild(span);
         this[`valSpan${i}`] = span;
       }
+      
+      const ohmvalue = document.createElement("div");
+      ohmvalue.id = "ohmvalue";
+      ohmvalue.textContent = "Initial Ohm Value";
+      container.appendChild(ohmvalue);
 
       this.container = container;
     }
@@ -46,9 +52,10 @@ class Resistor extends HTMLElement {
     connectedCallback() {
       this.appendChild(this.container);
       this.update();
+      
     }
 
-    update(bandnum?: number) {
+    update(bandnum) {
       switch(bandnum) {
         case 1:
           this.valSpan1.style.backgroundColor = this.getAttribute("color1") || "black";
@@ -67,6 +74,13 @@ class Resistor extends HTMLElement {
           this.valSpan2.style.backgroundColor = this.getAttribute("color2") || "black";
           break;
       }
+      const color1 = this.getAttribute("color1") || "black";
+      const color2 = this.getAttribute("color2") || "black";
+      const color3 = this.getAttribute("color3") || "black";
+      const color4 = this.getAttribute("color4") || "black";
+
+      const { resistanceValue, tolerance } = calculateResistance(color1, color2, color3, color4);
+      this.container.querySelector("#ohmvalue").textContent = `${resistanceValue}Ω ±${tolerance}%`;
     }
 }
 
