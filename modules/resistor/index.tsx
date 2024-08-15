@@ -1,6 +1,7 @@
 'use client';
 
 import { Band } from "@/components/atoms/band";
+import { BandToggler } from "@/components/atoms/bandToggler";
 import React, { useState } from "react";
 
 export const Resistor = () => {
@@ -22,6 +23,7 @@ export const Resistor = () => {
           <Band color={color5} setColor={setColor5}/>
         }
       </div>
+      <BandToggler isFiveBand={isFiveBand} setIsFiveBand={setIsFiveBand}/>
     </>
   )
 }

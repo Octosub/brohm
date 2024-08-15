@@ -1,4 +1,4 @@
-export interface BandProps {
+interface BandProps {
   color: string;
   setColor: (color: string) => void;
 }
