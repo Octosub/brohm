@@ -13,7 +13,15 @@ export const Resistor = () => {
 
   return(
     <>
-      <Band color={color1} setColor={setColor1}/>
+      <div id="bands-box">
+        <Band color={color1} setColor={setColor1}/>
+        <Band color={color2} setColor={setColor2}/>
+        <Band color={color3} setColor={setColor3}/>
+        <Band color={color4} setColor={setColor4}/>
+        {isFiveBand &&
+          <Band color={color5} setColor={setColor5}/>
+        }
+      </div>
     </>
   )
 }
