@@ -1,7 +1,7 @@
 'use client';
 
-import { Index } from "@/modules/resistor";
+import { Resistor } from "@/modules/resistor/index";
 
 export default function Page() {
-    return <Index />;
+    return <Resistor />;
 }
